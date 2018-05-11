@@ -6,5 +6,10 @@ namespace parking
 {
     class CarType
     {
+        public Settings.CarTypes BodyType { get; set; }
+        
     }
-}
+
+    }
+
+
