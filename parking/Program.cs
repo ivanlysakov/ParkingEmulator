@@ -6,7 +6,9 @@ namespace parking
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello! This is BeeParking");
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Menu menu = new Menu();
+            menu.mainMenu(Parking.Instance);
             Console.ReadKey();
         }
     }
