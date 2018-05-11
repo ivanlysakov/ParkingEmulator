@@ -13,13 +13,15 @@ namespace parking
 
         public static int globalCarID;
 
+       
         public Car (double balance, CarType type)
 
         {
             this.ID = Interlocked.Increment(ref globalCarID);
             this.Balance = balance;
             this.TypeofCar = type;
-            
+         
+
         }
     }
 }
