@@ -24,6 +24,7 @@ namespace parking
                 Console.WriteLine("6.   Вивести кількість вільних місць на парковці.");
                 Console.WriteLine("7.   Вивести історію транзакцій за останню хвилину.");
                 Console.WriteLine("8.   Вивести Transactions.log");
+                Console.WriteLine("9.   Показати всі авто на парковці");
                 Console.WriteLine("========================================================");
                 Console.WriteLine("Esc  Вихід");
                 ConsoleKeyInfo keyPressed;
@@ -36,7 +37,7 @@ namespace parking
                         do
                             {
                                 bool done = false;
-                                CarType cartype = null;
+                                Car.CarType cartype = Car.CarType.Undefined;
                                 do
                                 {
 
@@ -58,19 +59,19 @@ namespace parking
 
                                     {
                                         case ConsoleKey.D1:
-                                            cartype = new CarType() { BodyType = Settings.CarTypes.Passanger };
+                                            cartype = Car.CarType.Passanger;
                                             done = true;
                                             break;
                                         case ConsoleKey.D2:
-                                            cartype = new CarType() { BodyType = Settings.CarTypes.Truck };
+                                            cartype = Car.CarType.Truck;
                                             done = true;
                                             break;
                                         case ConsoleKey.D3:
-                                            cartype = new CarType() { BodyType = Settings.CarTypes.Bus };
+                                            cartype = Car.CarType.Bus;
                                             done = true;
                                             break;
                                         case ConsoleKey.D4:
-                                            cartype = new CarType() { BodyType = Settings.CarTypes.Moto };
+                                            cartype = Car.CarType.Moto;
                                             done = true;
                                             break;
                                         case ConsoleKey.Escape:
@@ -96,7 +97,7 @@ namespace parking
                             }
                                 while (!done);
 
-                                if (cartype != null)
+                                if (cartype != Car.CarType.Undefined)
                                     beePark.AddCar(cartype);
                                 else
                                 {
@@ -317,6 +318,45 @@ namespace parking
                         Console.Clear();
                         
                         break;
+
+                    case ConsoleKey.D9:
+
+                        do
+                        {
+                            Console.Clear();
+                            if (beePark.Cars.Count > 0)
+                            {
+                                Console.WriteLine("На парковці {0} авто", beePark.Cars.Count);
+                                foreach (var car in beePark.Cars)
+
+                                {
+                                    Console.WriteLine("{0} --- {1} --- {2}", car.ID, car.TypeofCar, car.Balance);
+                                }
+                            }
+                            else Console.WriteLine("На парковці наразі жодного авто)");
+
+                            Console.WriteLine("==============================================================");
+                            Console.WriteLine("Бажаєте спробувати ще раз?");
+                            Console.WriteLine("Вивести лог ще раз? - Натисніть Enter.");
+                            Console.WriteLine("Повернутися в головне меню? - Натисніть будь-яку клавішу");
+                            Console.WriteLine("==============================================================");
+                            keyPressed = Console.ReadKey();
+                            if (keyPressed.Key == ConsoleKey.Enter)
+                            {
+                                repeat = true;
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                repeat = false;
+                            }
+                        }
+                        while (repeat == true);
+                        Console.Clear();
+
+                        break;
+
+
 
                     case ConsoleKey.Escape:
                         Console.WriteLine("Have a nice day)");
