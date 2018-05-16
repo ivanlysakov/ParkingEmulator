@@ -10,20 +10,19 @@ namespace parking
         public static int Timeout { get; } = 3;
        
         //Dictionary - словарь для хранения цен за парковку
-        public static Dictionary<CarTypes, int> Tarif { get; } = new Dictionary<CarTypes, int>
+        public static Dictionary<Car.CarType, int> Tarif { get; } = new Dictionary<Car.CarType, int>
             {
-               { CarTypes.Truck ,       5 } ,
-               { CarTypes.Passanger ,   3 },
-               { CarTypes.Bus ,         2 },
-               { CarTypes.Moto ,        1 }
+               { Car.CarType.Truck ,       5 } ,
+               { Car.CarType.Passanger ,   3 },
+               { Car.CarType.Bus ,         2 },
+               { Car.CarType.Moto ,        1 }
             };
         //Свойство ParkingSpace - вместимость парковки(общее кол-во мест)
         public static int ParkingSpace { get; } = 5;
         
         //Свойство Fine - коэффициент штрафа
         public static int Fine { get; } = 2; 
-        //виды авто
-        public enum CarTypes { Passanger, Truck, Bus, Moto }
+       
 
     }
 
